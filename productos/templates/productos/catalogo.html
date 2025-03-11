@@ -1,0 +1,112 @@
+{% extends 'productos/base.html' %}
+{% load static %}
+
+{% block head %}
+    <!-- Puedes agregar cualquier metaetiqueta o recursos adicionales aquí -->
+{% endblock %}
+
+{% block content %}
+<link rel="stylesheet" href="{% static 'productos/css/catalogo.css' %}">
+<div class="background-image"></div>
+<div class="container">
+    <h1>Catálogo de Productos</h1>
+    <a href="{% url 'productos:carrito' %}" class="carrito-link">🛒 Ir al carrito</a>
+
+    <div class="product-grid">
+        {% for producto in page_obj %}
+            <div class="product">
+                <img src="{{ producto.imagen.url }}" alt="{{ producto.nombre }}" 
+                    onerror="this.onerror=null; this.src='{% static 'productos/img/default.jpg' %}';">
+                
+                <div class="product-info">
+                    <h3>{{ producto.nombre }}</h3>
+                    <p>${{ producto.precio|floatformat:2 }}</p>
+                </div>
+                <div class="btn-group">
+                    <!-- Asegúrate de que el producto.id esté bien pasado a la URL -->
+                    <a href="{% url 'productos:agregar_al_carrito' producto.id %}" class="btn-agregar">Agregar al carrito</a>
+
+                    <a href="{% url 'productos:detalle_producto' producto.id %}" class="btn btn-secondary">📜 Detalles</a>
+                </div>
+            </div>
+        {% empty %}
+            <p>No hay productos disponibles en el catálogo.</p>
+        {% endfor %}
+    </div>
+
+    <div class="pagination">
+        <span class="step-links">
+            {% if page_obj.has_previous %}
+                <a href="?page=1">&laquo; Primera</a>
+                <a href="?page={{ page_obj.previous_page_number }}">Anterior</a>
+            {% endif %}
+
+            <span class="current">Página {{ page_obj.number }} de {{ page_obj.paginator.num_pages }}.</span>
+
+            {% if page_obj.has_next %}
+                <a href="?page={{ page_obj.next_page_number }}">Siguiente</a>
+                <a href="?page={{ page_obj.paginator.num_pages }}">&Uacute;ltima &raquo;</a>
+            {% endif %}
+        </span>
+    </div>
+</div>
+
+<script>
+// Solo mantiene el script si es necesario para un comportamiento adicional como la API de carrito dinámico, si decides usarlo.
+document.addEventListener('DOMContentLoaded', function () {
+    function getCSRFToken() {
+        let csrfToken = null;
+        document.cookie.split(';').forEach(cookie => {
+            let [key, value] = cookie.trim().split('=');
+            if (key === 'csrftoken') {
+                csrfToken = value;
+            }
+        });
+        return csrfToken;
+    }
+
+    // Asegúrate de que el evento esté en el enlace correcto
+    document.querySelectorAll('.btn-agregar').forEach(button => {
+        button.addEventListener('click', function(event) {
+            event.preventDefault();
+
+            const productoId = this.getAttribute('href').split('/')[2]; // Obtiene el producto_id de la URL
+            const precio = parseFloat(this.closest('.product').querySelector('.product-info p').textContent.replace('$', '').trim());
+            const cantidad = 1;  // Se agrega una unidad por defecto
+            const csrftoken = getCSRFToken();
+
+            // Verifica que productoId y precio estén definidos
+            if (!productoId || !precio) {
+                alert("Faltan datos del producto.");
+                return;
+            }
+
+            fetch('{% url "productos:agregar_al_carrito" %}', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRFToken': csrftoken,
+                },
+                body: JSON.stringify({
+                    producto_id: productoId,
+                    precio: precio,
+                    cantidad: cantidad,
+                }),
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.status === 'success') {
+                    alert('Producto agregado al carrito.');
+                } else {
+                    alert('Error al agregar el producto: ' + data.message);
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+        });
+    });
+});
+
+</script>
+{% endblock %}

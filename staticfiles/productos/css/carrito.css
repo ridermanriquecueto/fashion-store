@@ -1,0 +1,92 @@
+/* Estilos generales */
+.carrito-container {
+    padding: 20px;
+    background-color: #f8f9fa; /* Color de fondo suave */
+    border-radius: 8px; /* Bordes redondeados */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Sombra suave */
+}
+
+.carrito-title {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+.carrito-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+}
+
+.carrito-table th,
+.carrito-table td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid #dee2e6; /* Línea divisoria */
+}
+
+.carrito-table th {
+    background-color: #e9ecef; /* Color de fondo para encabezados */
+    font-weight: bold;
+}
+
+.carrito-table img {
+    max-width: 80px; /* Ajusta el tamaño de las imágenes */
+    height: auto;
+}
+
+.carrito-actions {
+    display: flex;
+    align-items: center;
+}
+
+.carrito-actions form {
+    margin-right: 10px;
+}
+
+.carrito-actions button {
+    padding: 8px 16px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.carrito-actions button.actualizar {
+    background-color: #007bff; /* Azul */
+    color: white;
+}
+
+.carrito-actions button.eliminar {
+    background-color: #dc3545; /* Rojo */
+    color: white;
+}
+
+.carrito-total {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+.carrito-buttons {
+    display: flex;
+    justify-content: flex-end; /* Alinea los botones a la derecha */
+}
+
+.carrito-buttons button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-left: 10px;
+}
+
+.carrito-buttons button.pagar {
+    background-color: #28a745; /* Verde */
+    color: white;
+}
+
+.carrito-empty {
+    text-align: center;
+    font-size: 16px;
+    color: #6c757d; /* Gris */
+}

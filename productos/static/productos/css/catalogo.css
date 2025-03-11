@@ -1,0 +1,175 @@
+  /* Estilos generales */
+  body {
+    font-family: sans-serif;
+    margin: 0;
+}
+
+/* Fondo fijo */
+.background-image {
+    background-image: url('{% static "productos/img/tienda_ropas.png" %}');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    width: 100%;
+    height: 30vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: -1;
+}
+
+/* Contenedor principal */
+.container {
+    max-width: 1200px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: rgba(255, 255, 255, 0.9);
+    border-radius: 10px;
+}
+
+/* Título principal */
+h1 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+/* Enlace "Ir al carrito" */
+.carrito-link {
+    display: block;
+    text-align: center;
+    margin-bottom: 20px;
+    padding: 10px;
+    background-color: #0c7021;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+}
+
+.carrito-link:hover {
+    background-color: #128f32;
+}
+
+/* Cuadrícula de productos */
+.product-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 15px;
+    justify-content: center;
+}
+
+.product {
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    padding: 10px;
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+    height: 290px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.product:hover {
+    transform: scale(1.05);
+}
+
+.product img {
+    width: 100%;
+    height: 140px;
+    object-fit: cover;
+    border-radius: 5px;
+}
+
+.product-info {
+    width: 100%;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    text-align: center;
+}
+
+.product-info h3 {
+    font-size: 14px;
+    color: #333;
+    margin: 5px 0;
+}
+
+.product-info p {
+    font-size: 12px;
+    color: #0c7021;
+    margin-bottom: 5px;
+}
+
+/* Botones */
+.btn-group {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    width: 100%;
+}
+
+.btn {
+    padding: 6px;
+    font-size: 12px;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+    text-align: center;
+    width: 100%;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.btn-primary {
+    background-color: #ff9800;
+    color: white;
+}
+
+.btn-primary:hover {
+    background-color: #e68900;
+}
+
+.btn-secondary {
+    background-color: #0c7021;
+    color: white;
+}
+
+.btn-secondary:hover {
+    background-color: #128f32;
+}
+
+/* Paginación */
+.pagination {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.pagination a {
+    padding: 5px 10px;
+    background-color: #0c7021;
+    color: white;
+    border-radius: 5px;
+    text-decoration: none;
+    font-size: 12px;
+}
+
+.pagination a:hover {
+    background-color: #128f32;
+}
+
+/* Responsividad */
+@media (max-width: 768px) {
+    .product-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+@media (max-width: 480px) {
+    .product-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}

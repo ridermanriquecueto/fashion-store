@@ -1,0 +1,99 @@
+/* ... (Estilos generales y estilos para .featured-products) ... */
+
+/* Estilos para la sección de detalles del producto */
+.producto-detalles {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    border: 1px solid #ddd;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin-top: 20px; /* Espacio entre productos destacados y detalles */
+}
+
+.producto-imagen {
+    flex: 1 1 200px; /* Tamaño base más pequeño */
+    max-width: 40%; /* Porcentaje máximo más pequeño */
+    height: auto;
+    object-fit: contain; /* Ajustar la imagen al contenedor sin recortar */
+    border-radius: 8px;
+}
+
+.producto-info {
+    flex: 1 1 300px; /* Tamaño base más pequeño */
+    max-width: 60%; /* Porcentaje máximo más pequeño */
+}
+
+.producto-nombre {
+    font-size: 1.2em; /* Tamaño de letra más pequeño */
+    margin-bottom: 5px;
+}
+
+.producto-descripcion {
+    font-size: 1em; /* Tamaño de letra más pequeño */
+    margin-bottom: 10px;
+}
+
+.producto-precio {
+    font-size: 1em; /* Tamaño de letra más pequeño */
+    color: #888;
+    margin-bottom: 10px;
+}
+
+.cantidad-container {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.cantidad-container label {
+    margin-right: 5px;
+    font-size: 1em; /* Tamaño de letra más pequeño */
+}
+
+.cantidad-container input {
+    width: 40px;
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 1em; /* Tamaño de letra más pequeño */
+}
+
+.btn-agregar {
+    font-size: 1em; /* Tamaño de letra más pequeño */
+    padding: 8px 16px;
+    background-color: #28a745; /* Verde para "Agregar al carrito" */
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.btn-volver {
+    font-size: 1em; /* Tamaño de letra más pequeño */
+    padding: 8px 16px;
+    background-color: #007bff; /* Azul para "Volver al inicio" */
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+/* ... (Media queries para responsividad) ... */
+@media (max-width: 768px) {
+    .producto-detalles {
+        flex-direction: column; /* Cambiar a diseño de columna en pantallas pequeñas */
+    }
+
+    .producto-imagen {
+        max-width: 100%; /* Imagen ocupa todo el ancho en pantallas pequeñas */
+        margin-right: 0;
+        margin-bottom: 20px;
+    }
+
+    .producto-info {
+        max-width: 100%; /* Información ocupa todo el ancho en pantallas pequeñas */
+    }
+}

@@ -1,0 +1,178 @@
+/* Estilos generales (heredados o base.css) */
+body {
+    font-family: sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+/* Estilos para el contenedor del carrito */
+.carrito-container {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin: 20px auto;
+    max-width: 90%;
+}
+
+/* Título del carrito */
+.carrito-title {
+    color: #333;
+    font-size: 2em;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+/* Cuadrícula principal de productos */
+.productos-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Ancho mínimo de 300px */
+    grid-gap: 20px;
+}
+
+/* Estilos para cada elemento del carrito */
+.producto-item {
+    border: 1px solid #ddd;
+    padding: 20px;
+    border-radius: 8px;
+    display: grid; /* Convertir el elemento en una sub-cuadrícula */
+    grid-template-columns: 1fr 2fr; /* Dos columnas: 1 para la imagen, 2 para la información */
+    grid-gap: 10px;
+}
+
+/* Contenedor para la imagen del producto */
+.producto-imagen-container {
+    width: 100%;
+    overflow: hidden; /* Para evitar que la imagen se salga del contenedor */
+}
+
+/* Estilos para la imagen del producto */
+.producto-imagen {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    border-radius: 8px 8px 0 0; /* Bordes redondeados en la parte superior */
+}
+
+/* Estilos para la información del producto */
+.producto-info {
+    display: flex;
+    flex-direction: column;
+}
+
+/* Estilos para el nombre, precio y cantidad */
+.producto-nombre {
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.producto-precio {
+    margin-bottom: 10px;
+}
+
+.producto-cantidad {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.producto-cantidad input[type="number"] {
+    width: 50px;
+    padding: 6px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    text-align: center;
+    margin-right: 10px;
+}
+
+/* Estilos para las acciones (botones) */
+.producto-acciones {
+    display: flex;
+    align-items: center;
+}
+
+.producto-acciones button {
+    margin-right: 10px;
+}
+
+/* Estilos para el total del carrito */
+.carrito-total {
+    text-align: right;
+    margin-top: 20px;
+}
+
+/* Estilos para los botones de Finalizar Compra y Eliminar Todo */
+.carrito-buttons {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.carrito-buttons .btn {
+    margin: 0 5px;
+}
+
+/* Estilos para el mensaje de carrito vacío */
+.carrito-empty {
+    text-align: center;
+    color: #d37a7a;
+    margin-bottom: 20px;
+}
+
+/* Media queries para responsividad */
+@media (min-width: 992px) {
+    .carrito-container {
+        max-width: 70%;
+    }
+}
+
+@media (max-width: 768px) {
+    .carrito-container {
+        max-width: 85%;
+    }
+
+    .productos-grid {
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Ancho mínimo de 250px */
+    }
+
+    .producto-item {
+        grid-template-columns: 1fr 2fr; /* Dos columnas: 1 para la imagen, 2 para la información */
+    }
+
+    .producto-imagen-container {
+        width: 100%;
+    }
+
+    .producto-imagen {
+        width: 100%;
+    }
+
+    .producto-cantidad input[type="number"] {
+        width: 40px;
+    }
+}
+
+@media (max-width: 576px) {
+    .carrito-container {
+        max-width: 95%;
+    }
+
+    .productos-grid {
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); /* Ancho mínimo de 200px */
+    }
+
+    .producto-item {
+        grid-template-columns: 1fr 2fr; /* Dos columnas: 1 para la imagen, 2 para la información */
+    }
+
+    .producto-imagen-container {
+        width: 100%;
+    }
+
+    .producto-imagen {
+        width: 100%;
+    }
+
+    .producto-cantidad input[type="number"] {
+        width: 30px;
+    }
+}

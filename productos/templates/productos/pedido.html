@@ -1,0 +1,34 @@
+{% extends 'productos/base.html' %}
+{% load static %}
+
+{% block content %}
+    <h1>Formulario de Pedido</h1>
+
+    <h2>Resumen del Pedido</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Producto</th>
+                <th>Cantidad</th>
+                <th>Precio Unitario</th>
+                <th>Subtotal</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for item in items_con_total %}
+                <tr>
+                    <td>{{ item.producto.nombre }}</td>
+                    <td>{{ item.cantidad }}</td>
+                    <td>${{ item.precio }}</td>
+                    <td>${{ item.precio|mul:item.cantidad }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <p>Total: ${{ total_carrito }}</p>
+
+    <form action="{% url 'procesar_pedido' %}" method="POST">
+        {% csrf_token %}
+        {{ form.as_p }}  <button type="submit">Realizar Pedido</button>
+    </form>
+{% endblock %}

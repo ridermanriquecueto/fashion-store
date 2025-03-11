@@ -1,0 +1,54 @@
+{% extends 'productos/base.html' %}
+{% load static %}
+
+{% block content %}
+<link rel="stylesheet" href="{% static 'productos/css/contacto.css' %}">
+    <section class="contact-page">
+        <h1>Contacto</h1>
+        <p>¡Nos encantaría saber de ti! Si tienes alguna pregunta, comentario o sugerencia, no dudes en ponerte en contacto con nosotros.</p>
+
+        <form id="contact-form" action="{% url 'productos:contacto' %}" method="post" class="contact-form">
+            {% csrf_token %}
+
+            <div class="form-group">
+                <label for="nombre">Nombre:</label>
+                <input type="text" id="nombre" name="nombre" required>
+            </div>
+
+            <div class="form-group">
+                <label for="email">Correo electrónico:</label>
+                <input type="email" id="email" name="email" required>
+            </div>
+
+            <div class="form-group">
+                <label for="mensaje">Mensaje:</label>
+                <textarea id="mensaje" name="mensaje" rows="5" required></textarea>
+            </div>
+
+            <button type="submit" class="submit-button">Enviar mensaje</button>
+            <button type="button" class="cancel-button" id="cancel-button">Cancelar</button>
+        </form>
+
+        {% if messages %}
+            <ul class="messages">
+                {% for message in messages %}
+                    <li {% if message.tags %}class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+    </section>
+
+    <script>
+        const cancelButton = document.getElementById('cancel-button');
+        const contactForm = document.getElementById('contact-form');
+
+        cancelButton.addEventListener('click', () => {
+            // Restablecer el formulario
+            contactForm.reset();
+
+            // Opcional: Puedes redirigir a otra página si lo deseas
+            // window.location.href = "{% url 'productos:lista_producto' %}"; // Ejemplo: redirige a la lista de productos
+        });
+    </script>
+
+{% endblock %}

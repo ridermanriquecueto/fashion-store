@@ -1,0 +1,79 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tienda De Ropas</title>
+
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'productos/css/base.css' %}">
+
+    <link rel="icon" href="{% static 'productos/img/logo.png' %}" type="image/png">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="shortcut icon" href="{% static 'productos/img/favicon.ico' %}" type="image/x-icon">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+    {% block extra_head %}
+    {% endblock %}
+</head>
+<body>
+
+    <div class="background-image"></div>
+
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <a class="navbar-brand" href="{% url 'productos:index' %}">
+            <img src="{% static 'productos/img/logo.png' %}" alt="Logo" class="header-logo">
+            <span class="brand-name">Tienda de Moda</span>
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="{% url 'productos:index' %}">Inicio</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'productos:lista_producto' %}">Productos</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'productos:carrito' %}">Carrito
+                        <span id="cantidadCarrito">{% if request.session.carrito %}{{ request.session.carrito|length }}{% else %}0{% endif %}</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'productos:contacto' %}">Contacto</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'productos:catalogo' %}">Catálogo</a>
+                </li>
+                <li class="nav-item">
+                    <a href="{% url 'productos:lista_pedidos' %}" class="btn btn-primary ml-2">Ver Pedidos</a>
+                </li>
+            </ul>
+            <input type="text" class="search-box" placeholder="Buscar productos...">
+        </div>
+    </nav>
+
+    <div class="container mt-4">
+        {% block content %}
+        {% endblock %}
+    </div>
+
+    <footer class="footer">
+        <div class="container text-center">
+            <p>© 2025 Tiendas de Moda al Estilo
+                <img src="{% static 'productos/img/logo.png' %}" alt="Logo" class="footer-logo">
+                <a href="https://www.facebook.com" target="_blank">Facebook</a> |
+                <a href="https://www.instagram.com" target="_blank">Instagram</a>
+            </p>
+        </div>
+    </footer>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="{% static 'js/script.js' %}"></script>
+</body>
+</html>

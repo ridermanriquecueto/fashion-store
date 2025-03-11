@@ -1,0 +1,53 @@
+/* Estilos para la página de detalles del producto */
+.cantidad-container {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.cantidad-container label {
+    margin-right: 10px;
+}
+
+.cantidad-container input {
+    width: 50px;
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+/* Estilos para el botón de agregar al carrito */
+.btn-agregar {
+    background-color: #28a745;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.btn-agregar:hover {
+    background-color: #218838;
+}
+
+/* Estilos para el spinner de carga */
+#spinner {
+    margin-top: 20px;
+    font-style: italic;
+    color: #888;
+}
+
+/* Estilos para el selector de color */
+.color-selector {
+    margin-bottom: 20px;
+}
+
+.color-selector label {
+    margin-right: 10px;
+}
+
+.color-selector select {
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}

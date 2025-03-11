@@ -1,0 +1,36 @@
+{% extends 'productos/base.html' %}
+{% load static %}
+
+{% block content %}
+
+<link rel="stylesheet" href="{% static 'productos/css/index.css' %}">
+
+<div class="hero">
+    <div class="hero-content">
+        <h1>Bienvenidos a <span class="ryder">Billy-Sport</span></h1>
+        <p>La moda más moderna, linda y a los mejores precios. ¡Descubre las tendencias de cada temporada!</p>
+        <a href="{% url 'productos:lista_producto' %}" class="btn btn-primary">Ver nuestros productos</a>
+    </div>
+</div>
+
+<div class="featured-products">
+    <h2>Productos destacados</h2>
+    <div class="product-grid">
+        {% for producto in productos_destacados %}
+            <div class="product">
+                <div class="product-image">
+                    <img src="{{ producto.imagen.url }}" alt="{{ producto.nombre }}">
+                </div>
+                <div class="product-content">
+                    <h3>{{ producto.nombre }}</h3>
+                    <p>{{ producto.descripcion }}</p>
+                    <div class="product-actions">
+                        <span class="price">${{ producto.precio }}</span>  <a href="{% url 'productos:detalle_producto' producto.id %}" class="btn btn-secondary">Detalles</a>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+</div>
+
+{% endblock %}

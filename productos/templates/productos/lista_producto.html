@@ -1,0 +1,45 @@
+{% extends 'productos/base.html' %}
+{% load static %}
+
+{% block content %}
+    <link rel="stylesheet" href="{% static 'productos/css/lista_producto.css' %}">
+
+    <h1>Lista de Productos</h1>
+
+    <div class="table-responsive"> </div>
+        <table>
+            <thead>
+                <tr>
+                    <th>N°</th>
+                    <th>Nombre</th>
+                    <th>Descripción</th>
+                    <th>Precio</th>
+                    <th>Stock</th>
+                    <th>Imagen</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for producto in productos %}
+                    <tr>
+                        <td>{{ forloop.counter }}</td>
+                        <td>{{ producto.nombre }}</td>
+                        <td>{{ producto.descripcion }}</td>
+                        <td>{{ producto.precio }}</td>
+                        <td>{{ producto.stock }}</td>
+                        <td>
+                            {% if producto.imagen %}
+                                <img src="{{ producto.imagen.url }}" alt="{{ producto.nombre }}" width="100">
+                            {% endif %}
+                        </td>
+                        <td>
+                            <a href="{% url 'productos:crear_producto' %}">Crear</a>
+                            <a href="{% url 'productos:editar_producto' producto.id %}">Editar</a>
+                            <a href="{% url 'productos:eliminar_producto' producto.id %}" onclick="return confirm('¿Estás seguro de que quieres eliminar este producto?')">Eliminar</a>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock %}

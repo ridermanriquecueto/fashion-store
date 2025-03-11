@@ -1,0 +1,164 @@
+/* Fondo fijo que cubre toda la pantalla */
+.background-image {
+    background-image: url('../img/tienda_ropas.png');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    width: 100%;
+    height: 100vh;
+    position:absolute;
+    top: 0;
+    left: 0;
+    z-index: -1;
+}
+
+/* Navbar */
+nav {
+    background-color: #0c7021;
+    height: 70px;
+    padding: 0 15px;
+    margin-bottom: 10px;  /* Reducir el espacio debajo del navbar */
+}
+
+.navbar-brand {
+    display: flex;
+    align-items: center;
+    margin-bottom: 0;  /* Eliminar margen inferior del logo */
+}
+
+.header-logo {
+    width: 120px;  /* Aumento del tamaño del logo del header */
+    height: 60px;  /* Mantengo la altura proporcional */
+    margin-right: 10px;
+}
+
+.brand-name {
+    color: #fff;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.navbar-nav {
+    display: flex;
+    justify-content: flex-start;
+    width: 100%;
+}
+
+.navbar-nav .nav-item {
+    margin-left: 10px;  /* Separar los elementos del menú con 2 cm desde el logo */
+}
+
+.navbar-nav .nav-link {
+    color: #fff;
+    padding: 10px 15px;
+}
+
+.navbar-nav .nav-link:hover {
+    color: #e67e22;
+}
+
+/* Buscador */
+.search-box {
+    padding: 6px 12px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+/* Footer */
+.footer {
+    background-color: #0b5002;
+    color: #fff;
+    text-align: center;
+    padding: 10px 0;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    height: 70px;
+}
+
+/* Estilo para el logo en el footer */
+.footer-logo {
+    width: 100px;  /* Aumento del tamaño del logo del footer */
+    height: 50px;  /* Mantengo la altura proporcional */
+    margin: 0 10px;
+}
+
+/* Para asegurarnos de que el footer sigue bien diseñado */
+.footer a {
+    color: #e67e22;
+    text-decoration: none;
+}
+
+.footer a:hover {
+    text-decoration: underline;
+}
+
+/* 🛠️ RESPONSIVE 🛠️ */
+@media (max-width: 768px) {
+    /* Ajustes para tablets y celulares */
+    .navbar {
+        height: auto;
+        padding: 5px 10px;  /* Reduce el padding para que todo se vea más compacto */
+    }
+
+    .navbar-brand {
+        font-size: 16px;
+        margin-bottom: 0;  /* Eliminar margen inferior adicional */
+    }
+
+    .header-logo {
+        width: 100px;  /* Ajuste más pequeño pero ancho para el logo del header */
+        height: 50px;
+    }
+
+    .navbar-nav {
+        text-align: center;
+        width: 100%;
+    }
+
+    .navbar-nav .nav-item {
+        margin-left: 0;  /* Eliminar el margen de 2 cm en móviles */
+        margin-bottom: 5px;
+    }
+
+    .search-box {
+        width: 100%;
+        margin-top: 10px;
+    }
+
+    .footer {
+        height: auto;
+        padding: 15px;
+    }
+}
+
+@media (max-width: 480px) {
+    /* Ajustes para celulares pequeños */
+    .brand-name {
+        font-size: 14px;
+    }
+
+    .header-logo {
+        width: 90px;  /* Ajuste más pequeño para el logo del header */
+        height: 45px;
+    }
+
+    .footer-logo {
+        width: 70px;  /* Ajuste para el logo del footer */
+        height: 35px;
+    }
+
+    .navbar-toggler {
+        padding: 5px;
+    }
+
+    .footer {
+        font-size: 14px;
+        padding: 10px;
+    }
+
+    /* Reducir espacio entre logo y menú en móviles */
+    nav {
+        margin-bottom: 5px;  /* Reduce el margen inferior para que haya menos espacio */
+    }
+}

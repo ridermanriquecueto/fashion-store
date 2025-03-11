@@ -1,0 +1,10 @@
+{% extends "productos/base.html" %}
+
+{% block content %}
+    <h1>¿Seguro que quieres eliminar el pedido {{ pedido.id }}?</h1>
+    <form method="post">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-danger">Sí, eliminar</button>
+        <a href="{% url 'lista_pedidos' %}" class="btn btn-secondary">No, cancelar</a>
+    </form>
+{% endblock %}

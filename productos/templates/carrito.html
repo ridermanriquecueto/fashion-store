@@ -1,0 +1,81 @@
+{% extends 'productos/base.html' %}
+{% load static %}
+
+{% block content %}
+<link rel="stylesheet" href="{% static 'productos/css/carrito.css' %}">
+<h1>Carrito de Compras</h1>
+
+{% if items %}
+    <div class="productos-grid">
+        {% for item in items %}
+            <div class="producto-item" id="producto-{{ item.producto.id }}">
+                <img class="producto-imagen" src="{{ item.producto.imagen.url }}" alt="{{ item.producto.nombre }}">
+                <div class="producto-info">
+                    <div class="producto-nombre">{{ item.producto.nombre }}</div>
+                    <div class="producto-precio">Precio: ${{ item.precio }}</div>
+                    <div class="producto-cantidad">
+                        Cantidad: <input type="number" value="{{ item.cantidad }}" min="1" data-id="{{ item.producto.id }}">
+                    </div>
+                    <div class="producto-acciones">
+                        <button class="btn btn-danger btn-eliminar" data-id="{{ item.producto.id }}">Eliminar</button>
+                        <button class="btn btn-primary btn-actualizar" data-id="{{ item.producto.id }}">Actualizar</button>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+
+    <div class="carrito-total">
+        Total: $<span id="total">{{ total_carrito|floatformat:2 }}</span>
+    </div>
+
+    <button class="btn btn-success" id="btn-finalizar-compra">Finalizar Compra</button>
+    <button class="btn btn-danger" id="btn-eliminar-todo">Vaciar Carrito</button>
+{% else %}
+    <p>Tu carrito está vacío.</p>
+    <a href="{% url 'productos:catalogo' %}"><button>Ir al catálogo</button></a>
+{% endif %}
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    $(document).ready(function() {
+        $('.btn-actualizar').click(function() {
+            let productoId = $(this).data('id');
+            let cantidad = $('input[data-id="' + productoId + '"]').val();
+            $.post('{% url "productos:actualizar_cantidad" %}', {
+                'producto_id': productoId,
+                'cantidad': cantidad,
+                'csrfmiddlewaretoken': '{{ csrf_token }}'
+            }, function(response) {
+                if (response.status === 'success') {
+                    $('#total').text(response.total);
+                    alert('Cantidad actualizada');
+                }
+            });
+        });
+
+        $('.btn-eliminar').click(function() {
+            let productoId = $(this).data('id');
+            $.post('{% url "productos:eliminar_uno" %}', {
+                'producto_id': productoId,
+                'csrfmiddlewaretoken': '{{ csrf_token }}'
+            }, function(response) {
+                if (response.status === 'success') {
+                    $('#producto-' + productoId).remove();
+                    $('#total').text(response.total);
+                }
+            });
+        });
+
+        $('#btn-eliminar-todo').click(function() {
+            $.post('{% url "productos:eliminar_todo" %}', {
+                'csrfmiddlewaretoken': '{{ csrf_token }}'
+            }, function(response) {
+                if (response.status === 'success') {
+                    location.reload();
+                }
+            });
+        });
+    });
+</script>
+{% endblock %}
